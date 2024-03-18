@@ -34,7 +34,7 @@ import jakarta.validation.constraints.*;
 import java.util.List;
 import java.util.Map;
 
-@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-03-18T09:59:41.166437+01:00[Europe/Madrid]")
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-03-18T10:25:14.687233600+01:00[Europe/Madrid]")
 @Validated
 public interface PriceManagerApi {
 
