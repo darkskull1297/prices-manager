@@ -1,7 +1,7 @@
 package com.zara.spring.java.infrastructure.config;
 
-import com.zara.spring.java.services.PriceService;
-import com.zara.spring.java.usescases.PriceUseCaseImpl;
+import com.zara.spring.java.application.services.PriceService;
+import com.zara.spring.java.application.usescases.PriceUseCaseImpl;
 import com.zara.spring.java.domain.ports.out.PriceRepositoryPort;
 import com.zara.spring.java.infrastructure.repositories.JpaPriceRepositoryAdapter;
 import org.springframework.context.annotation.Bean;

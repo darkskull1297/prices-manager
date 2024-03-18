@@ -18,7 +18,7 @@ import jakarta.validation.constraints.*;
  */
 @Schema(description = "Data structure containing information about the health response.")
 @Validated
-@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-03-18T03:04:30.815599+01:00[Europe/Madrid]")
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-03-18T03:17:32.054252800+01:00[Europe/Madrid]")
 
 
 public class HealthDTO  implements Serializable  {

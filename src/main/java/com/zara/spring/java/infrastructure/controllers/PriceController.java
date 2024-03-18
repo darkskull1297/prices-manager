@@ -2,7 +2,7 @@ package com.zara.spring.java.infrastructure.controllers;
 
 import com.zara.spring.java.api.PriceManagerApi;
 import com.zara.spring.java.dto.InlineResponse200DTO;
-import com.zara.spring.java.services.PriceService;
+import com.zara.spring.java.application.services.PriceService;
 import com.zara.spring.java.domain.models.PriceModel;
 import com.zara.spring.java.infrastructure.mappers.PriceInfrastructureMapper;
 import lombok.AllArgsConstructor;
