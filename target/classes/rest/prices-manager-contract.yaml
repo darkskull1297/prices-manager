@@ -1,0 +1,351 @@
+openapi: 3.0.3
+info:
+  title: Zara Prices Manager
+  version: 1.0.0
+  description:
+    Microservice build using hexagonal architecture, Java 17 and Spring Boot 3
+  contact:
+    name: Miguel Angel Delgado Moreno
+    url: https://github.com/darkskull1297
+    email: delgadomiguel121297@gmail.com
+servers:
+  # Added by API Auto Mocking Plugin
+  - description: SwaggerHub API Auto Mocking
+    url: https://virtserver.swaggerhub.com/DELGADOMIGUEL121297/price-manager/1.0.0
+  - url: /api/price
+tags:
+  - name: Price Manager
+paths:
+  /api/price:
+    get:
+      summary: Retrieve a price by date product id and brand id.
+      description: Retrieve a price by date product id and brand id.
+      operationId: retrievePriceByParameters
+      tags:
+        - Price Manager
+      parameters:
+        - $ref: '#/components/parameters/ProductId'
+        - $ref: '#/components/parameters/BrandId'
+        - $ref: '#/components/parameters/Date'
+      responses:
+        '200':
+          $ref: '#/components/responses/PriceResponse'
+        '204':
+          $ref: '#/components/responses/NoContent'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+        '403':
+          $ref: '#/components/responses/Forbidden'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '500':
+          $ref: '#/components/responses/InternalServerError'
+        '503':
+          $ref: '#/components/responses/ServiceUnavailable'
+        '504':
+          $ref: '#/components/responses/GatewayTimeout'
+components:
+  parameters:
+    Date:
+      name: date
+      in: query
+      description: "Date of the price what ypu want to get. The value uses the complete data format defined in ISO 8601:'YYYY-mm-DDTHH:MM:SS'\n\nWhere:\n- YYYY: 4-digit year\n- mm: 2-digit month (for example, 01 = January)\n- DD: 2-digit day of the month (01 through 31)\n- HH: Hour, from 00 to 23\n- MM: Minutes, from 00 to 59\n- SS: Seconds, from 00 to 59."
+      required: true
+      schema:
+        $ref: '#/components/schemas/Date'
+      example: '2020-07-21T17:32:28Z'
+    BrandId:
+      name: brandId
+      in: query
+      description: |
+        Brand Id.
+      schema:
+        $ref: '#/components/schemas/BrandId'
+      style: form
+      example: '1'
+      required: true
+    ProductId:
+      name: productId
+      in: query
+      description: |
+        Product Id.
+      schema:
+        $ref: '#/components/schemas/ProductId'
+      style: form
+      example: '1'
+      required: true
+  responses:
+    PriceResponse:
+      description: OK
+      content:
+        application/json:
+          schema:
+            oneOf:
+              - $ref: '#/components/schemas/Price'
+    NoContent:
+      description: No Content success status response. Request has succeeded but 0 elements found with this filter
+    #Errors
+    BadRequest:
+      description: Bad Request
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+          example:
+            errors:
+              - code: badRequest
+                message: Bad Request
+                level: ERROR
+                description: Bad Request
+    Forbidden:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+          example:
+            errors:
+              - code: forbidden
+                message: Forbidden
+                level: ERROR
+                description: Forbidden
+    GatewayTimeout:
+      description: Gateway timeout
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+          example:
+            errors:
+              - code: gatewayTimeout
+                message: Gateway timeout
+                level: ERROR
+                description: Gateway timeout
+    InternalServerError:
+      description: Internal Server Error
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+          example:
+            errors:
+              - code: internalServerError
+                message: Internal Server Error
+                level: ERROR
+                description: Internal Server Error
+    NotAcceptable:
+      description: The specified resource was not acceptable
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+          example:
+            errors:
+              - code: notAcceptable
+                message: Not Acceptable
+                level: ERROR
+                description: Not Acceptable
+    PayloadTooLarge:
+      description: The request entity is larger than limits defined
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+          example:
+            errors:
+              - code: payloadTooLarge
+                message: Payload Too Large
+                level: ERROR
+                description: Payload Too Large
+    NotFound:
+      description: The specified resource was not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+          example:
+            errors:
+              - code: notFound
+                message: Not Found
+                level: ERROR
+                description: Not Found
+    ServiceUnavailable:
+      description: Service Unavailable
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+          example:
+            errors:
+              - code: serviceUnavailable
+                message: Service Unavailable
+                level: ERROR
+                description: Service Unavailable
+    Unauthorized:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Errors'
+          example:
+            errors:
+              - code: unauthorized
+                message: Unauthorized
+                level: ERROR
+                description: Unauthorized
+    Health:
+      description: OK
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/Health'
+  schemas:
+    Price:
+      description: Data structure containing the purchase order details.
+      type: object
+      required:
+        - id
+      properties:
+        priceListId:
+          type: integer
+          maxLength: 1
+          description: Price List ID.
+          example: '1'
+        brandId:
+          type: integer
+          maxLength: 1
+          description: Brand ID.
+          example: '1'
+        startDate:
+          type: string
+          format: date-time
+          description: "Start date for the Price."
+          example: '2020-07-21T17:32:28Z'
+        endDate:
+          type: string
+          format: date-time
+          description: "End date for the Price."
+          example: '2020-07-21T17:32:28Z'
+        productId:
+          type: integer
+          maxLength: 1
+          description: Product ID.
+          example: '1'
+        priority:
+          type: integer
+          maxLength: 1
+          description: Pr ID.
+          example: '1'
+        price:
+          type: number
+          maxLength: 10
+          description: Transfer Order number code.
+          example: '35.40'
+        currency:
+          type: string
+          minLength: 3
+          maxLength: 3
+          description: Currency.
+          example: 'EUR'
+    Date:
+      type: string
+      format: date-time
+      description: "Date for the Purchase Order.\n\nThe value uses the complete data format defined in ISO 8601:\n\n'YYYY-MM-DD'\n\nWhere:\n- YYYY: 4-digit year\n- MM: 2-digit month (for example, 01 = January)\n- DD: 2-digit day of the month (01 through 31)."
+      example: '2020-07-21T17:32:28Z'
+    ProductId:
+      type: integer
+      maxLength: 1
+      description: Product identifier.
+      example: '1'
+    BrandId:
+      type: integer
+      maxLength: 1
+      description: Brand identifier.
+      example: '1'
+    Health:
+      description: Data structure containing information about the health response.
+      type: object
+      required:
+        - status
+        - components
+      properties:
+        status:
+          $ref: '#/components/schemas/StatusHealth'
+        components:
+          type: array
+          description: List of components.
+          items:
+            $ref: '#/components/schemas/Component'
+    Component:
+      description: Data structure containing the status components.
+      type: object
+      required:
+        - name
+        - type
+        - status
+      properties:
+        name:
+          type: string
+          description: Name of the component.
+          example: Oracle
+        type:
+          type: string
+          description: Description of the component.
+          example: Database
+        status:
+          $ref: '#/components/schemas/StatusHealth'
+    StatusHealth:
+      type: string
+      description: |
+        Status of the component.
+        - UP: Status indicating that the component or subsystem is functioning as expected.
+        - DOWN: Status indicating that the component or subsystem has suffered an unexpected failure.
+        - OUT_OF_SERVICE: Status indicating that the component or subsystem has been taken out of service and should not be used.
+        - UNKNOWN: Status indicating that the component or subsystem is in an unknown state.
+      example: UP
+      enum:
+        - UP
+        - DOWN
+        - UNKNOWN
+        - OUT_OF_SERVICE
+    Errors:
+      type: object
+      description: Data structure containing the details for errors.
+      required:
+        - errors
+      properties:
+        errors:
+          type: array
+          description: List of errors.
+          items:
+            $ref: '#/components/schemas/Error'
+    Error:
+      type: object
+      description: Data structure containing the error details.
+      required:
+        - code
+        - message
+      properties:
+        code:
+          type: string
+          description: Unique alphanumeric human readable error code.
+          example: badRequest
+        message:
+          type: string
+          description: Brief summary of the reported issue.
+          example: Message
+        level:
+          type: string
+          description: Level of the reported issue.
+          example: ERROR
+          enum:
+            - ERROR
+            - FATAL
+            - INFO
+            - WARNING
+        description:
+          type: string
+          description: Detailed description of the reported issue.
+          example: Description.
