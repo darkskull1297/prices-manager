@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ComponentDTO.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">prices-manager</a> &gt; <a href="index.source.html" class="el_package">com.zara.spring.java.dto</a> &gt; <span class="el_source">ComponentDTO.java</span></div><h1>ComponentDTO.java</h1><pre class="source lang-java linenums">package com.zara.spring.java.dto;
+
+import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.zara.spring.java.dto.StatusHealthDTO;
+import io.swagger.v3.oas.annotations.media.Schema;
+import java.io.Serializable;
+import org.springframework.validation.annotation.Validated;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
+
+/**
+ * Data structure containing the status components.
+ */
+@Schema(description = &quot;Data structure containing the status components.&quot;)
+@Validated
+@jakarta.annotation.Generated(value = &quot;io.swagger.codegen.v3.generators.java.SpringCodegen&quot;, date = &quot;2024-04-19T19:41:52.939697500+02:00[Europe/Madrid]&quot;)
+
+
+<span class="nc" id="L21">public class ComponentDTO  implements Serializable  {</span>
+  private static final long serialVersionUID = 1L;
+
+<span class="nc" id="L24">  @JsonProperty(&quot;name&quot;)</span>
+  private String name = null;
+
+<span class="nc" id="L27">  @JsonProperty(&quot;type&quot;)</span>
+  private String type = null;
+
+<span class="nc" id="L30">  @JsonProperty(&quot;status&quot;)</span>
+  private StatusHealthDTO status = null;
+
+  public ComponentDTO name(String name) {
+<span class="nc" id="L34">    this.name = name;</span>
+<span class="nc" id="L35">    return this;</span>
+  }
+
+  /**
+   * Name of the component.
+   * @return name
+   **/
+  @Schema(example = &quot;Oracle&quot;, required = true, description = &quot;Name of the component.&quot;)
+      @NotNull
+
+    public String getName() {
+<span class="nc" id="L46">    return name;</span>
+  }
+
+  public void setName(String name) {
+<span class="nc" id="L50">    this.name = name;</span>
+<span class="nc" id="L51">  }</span>
+
+  public ComponentDTO type(String type) {
+<span class="nc" id="L54">    this.type = type;</span>
+<span class="nc" id="L55">    return this;</span>
+  }
+
+  /**
+   * Description of the component.
+   * @return type
+   **/
+  @Schema(example = &quot;Database&quot;, required = true, description = &quot;Description of the component.&quot;)
+      @NotNull
+
+    public String getType() {
+<span class="nc" id="L66">    return type;</span>
+  }
+
+  public void setType(String type) {
+<span class="nc" id="L70">    this.type = type;</span>
+<span class="nc" id="L71">  }</span>
+
+  public ComponentDTO status(StatusHealthDTO status) {
+<span class="nc" id="L74">    this.status = status;</span>
+<span class="nc" id="L75">    return this;</span>
+  }
+
+  /**
+   * Get status
+   * @return status
+   **/
+  @Schema(required = true, description = &quot;&quot;)
+      @NotNull
+
+    @Valid
+    public StatusHealthDTO getStatus() {
+<span class="nc" id="L87">    return status;</span>
+  }
+
+  public void setStatus(StatusHealthDTO status) {
+<span class="nc" id="L91">    this.status = status;</span>
+<span class="nc" id="L92">  }</span>
+
+
+  @Override
+  public boolean equals(java.lang.Object o) {
+<span class="nc bnc" id="L97" title="All 2 branches missed.">    if (this == o) {</span>
+<span class="nc" id="L98">      return true;</span>
+    }
+<span class="nc bnc" id="L100" title="All 4 branches missed.">    if (o == null || getClass() != o.getClass()) {</span>
+<span class="nc" id="L101">      return false;</span>
+    }
+<span class="nc" id="L103">    ComponentDTO component = (ComponentDTO) o;</span>
+<span class="nc bnc" id="L104" title="All 2 branches missed.">    return Objects.equals(this.name, component.name) &amp;&amp;</span>
+<span class="nc bnc" id="L105" title="All 2 branches missed.">        Objects.equals(this.type, component.type) &amp;&amp;</span>
+<span class="nc bnc" id="L106" title="All 2 branches missed.">        Objects.equals(this.status, component.status);</span>
+  }
+
+  @Override
+  public int hashCode() {
+<span class="nc" id="L111">    return Objects.hash(name, type, status);</span>
+  }
+
+  @Override
+  public String toString() {
+<span class="nc" id="L116">    StringBuilder sb = new StringBuilder();</span>
+<span class="nc" id="L117">    sb.append(&quot;class ComponentDTO {\n&quot;);</span>
+    
+<span class="nc" id="L119">    sb.append(&quot;    name: &quot;).append(toIndentedString(name)).append(&quot;\n&quot;);</span>
+<span class="nc" id="L120">    sb.append(&quot;    type: &quot;).append(toIndentedString(type)).append(&quot;\n&quot;);</span>
+<span class="nc" id="L121">    sb.append(&quot;    status: &quot;).append(toIndentedString(status)).append(&quot;\n&quot;);</span>
+<span class="nc" id="L122">    sb.append(&quot;}&quot;);</span>
+<span class="nc" id="L123">    return sb.toString();</span>
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(java.lang.Object o) {
+<span class="nc bnc" id="L131" title="All 2 branches missed.">    if (o == null) {</span>
+<span class="nc" id="L132">      return &quot;null&quot;;</span>
+    }
+<span class="nc" id="L134">    return o.toString().replace(&quot;\n&quot;, &quot;\n    &quot;);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

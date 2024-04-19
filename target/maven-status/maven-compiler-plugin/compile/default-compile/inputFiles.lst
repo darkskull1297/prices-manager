@@ -1,24 +1,20 @@
-C:\Users\Miguel Delgado\prices-manager\src\main\java\com\zara\spring\java\application\services\PriceService.java
-C:\Users\Miguel Delgado\prices-manager\target\generated-sources\swagger\src\main\java\com\zara\spring\java\dto\InlineResponse200DTO.java
-C:\Users\Miguel Delgado\prices-manager\src\main\java\com\zara\spring\java\infrastructure\controllers\generic\ErrorsDTO.java
-C:\Users\Miguel Delgado\prices-manager\target\generated-sources\swagger\src\main\java\com\zara\spring\java\api\PriceManagerApi.java
-C:\Users\Miguel Delgado\prices-manager\target\generated-sources\swagger\src\main\java\com\zara\spring\java\dto\HealthDTO.java
-C:\Users\Miguel Delgado\prices-manager\src\main\java\com\zara\spring\java\infrastructure\repositories\JpaPriceRepository.java
-C:\Users\Miguel Delgado\prices-manager\target\generated-sources\swagger\src\main\java\com\zara\spring\java\dto\StatusHealthDTO.java
-C:\Users\Miguel Delgado\prices-manager\src\main\java\com\zara\spring\java\application\usescases\PriceUseCaseImpl.java
-C:\Users\Miguel Delgado\prices-manager\src\main\java\com\zara\spring\java\domain\ports\out\PriceRepositoryPort.java
-C:\Users\Miguel Delgado\prices-manager\target\generated-sources\swagger\src\main\java\com\zara\spring\java\dto\ErrorDTO.java
-C:\Users\Miguel Delgado\prices-manager\target\generated-sources\swagger\src\main\java\com\zara\spring\java\dto\ComponentDTO.java
-C:\Users\Miguel Delgado\prices-manager\src\main\java\com\zara\spring\java\infrastructure\config\ApplicationConfig.java
-C:\Users\Miguel Delgado\prices-manager\src\main\java\com\zara\spring\java\infrastructure\repositories\JpaPriceRepositoryAdapter.java
-C:\Users\Miguel Delgado\prices-manager\src\main\java\com\zara\spring\java\PricesManagerApplication.java
-C:\Users\Miguel Delgado\prices-manager\target\generated-sources\swagger\src\main\java\com\zara\spring\java\dto\PriceDTO.java
-C:\Users\Miguel Delgado\prices-manager\src\main\java\com\zara\spring\java\infrastructure\entities\PriceEntity.java
-C:\Users\Miguel Delgado\prices-manager\src\main\java\com\zara\spring\java\domain\models\PriceModel.java
-C:\Users\Miguel Delgado\prices-manager\src\main\java\com\zara\spring\java\infrastructure\mappers\PriceInfrastructureMapper.java
-C:\Users\Miguel Delgado\prices-manager\src\main\java\com\zara\spring\java\infrastructure\controllers\generic\ErrorDTO.java
-C:\Users\Miguel Delgado\prices-manager\src\main\java\com\zara\spring\java\infrastructure\controllers\generic\ExceptionHandlerController.java
-C:\Users\Miguel Delgado\prices-manager\src\main\java\com\zara\spring\java\infrastructure\controllers\PriceController.java
-C:\Users\Miguel Delgado\prices-manager\src\main\java\com\zara\spring\java\infrastructure\mappers\GenericMapper.java
-C:\Users\Miguel Delgado\prices-manager\target\generated-sources\swagger\src\main\java\com\zara\spring\java\dto\ErrorsDTO.java
-C:\Users\Miguel Delgado\prices-manager\src\main\java\com\zara\spring\java\domain\ports\in\PriceUseCase.java
+C:\Projects\prices-manager\src\main\java\com\zara\spring\java\infrastructure\entities\PriceEntity.java
+C:\Projects\prices-manager\target\generated-sources\swagger\src\main\java\com\zara\spring\java\dto\InlineResponse200DTO.java
+C:\Projects\prices-manager\src\main\java\com\zara\spring\java\infrastructure\repositories\PriceRepository.java
+C:\Projects\prices-manager\target\generated-sources\swagger\src\main\java\com\zara\spring\java\dto\PriceDTO.java
+C:\Projects\prices-manager\src\main\java\com\zara\spring\java\application\controllers\generic\ErrorDTO.java
+C:\Projects\prices-manager\src\main\java\com\zara\spring\java\domain\mappers\PriceInfrastructureMapper.java
+C:\Projects\prices-manager\target\generated-sources\swagger\src\main\java\com\zara\spring\java\dto\HealthDTO.java
+C:\Projects\prices-manager\src\main\java\com\zara\spring\java\application\controllers\generic\ErrorsDTO.java
+C:\Projects\prices-manager\src\main\java\com\zara\spring\java\application\controllers\PriceController.java
+C:\Projects\prices-manager\target\generated-sources\swagger\src\main\java\com\zara\spring\java\dto\ErrorDTO.java
+C:\Projects\prices-manager\src\main\java\com\zara\spring\java\domain\models\PriceModel.java
+C:\Projects\prices-manager\src\main\java\com\zara\spring\java\domain\mappers\GenericMapper.java
+C:\Projects\prices-manager\target\generated-sources\swagger\src\main\java\com\zara\spring\java\dto\ComponentDTO.java
+C:\Projects\prices-manager\target\generated-sources\swagger\src\main\java\com\zara\spring\java\dto\StatusHealthDTO.java
+C:\Projects\prices-manager\src\main\java\com\zara\spring\java\domain\services\PriceService.java
+C:\Projects\prices-manager\src\main\java\com\zara\spring\java\PricesManagerApplication.java
+C:\Projects\prices-manager\target\generated-sources\swagger\src\main\java\com\zara\spring\java\api\PriceManagerApi.java
+C:\Projects\prices-manager\src\main\java\com\zara\spring\java\application\controllers\generic\ExceptionHandlerController.java
+C:\Projects\prices-manager\src\main\java\com\zara\spring\java\domain\services\PriceServiceImpl.java
+C:\Projects\prices-manager\target\generated-sources\swagger\src\main\java\com\zara\spring\java\dto\ErrorsDTO.java

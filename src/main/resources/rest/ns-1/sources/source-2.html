@@ -1,0 +1,139 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > LocalDateDeserializer</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.zara.spring.java.application.config</a>
+</div>
+
+<h1>Coverage Summary for Class: LocalDateDeserializer (com.zara.spring.java.application.config)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">LocalDateDeserializer</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    66,7%
+  </span>
+  <span class="absValue">
+    (2/3)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    42,9%
+  </span>
+  <span class="absValue">
+    (3/7)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.zara.spring.java.application.config;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import com.fasterxml.jackson.core.JsonParser;
+<i class="no-highlight">4</i>&nbsp;import com.fasterxml.jackson.databind.DeserializationContext;
+<i class="no-highlight">5</i>&nbsp;import com.fasterxml.jackson.databind.JsonDeserializer;
+<i class="no-highlight">6</i>&nbsp;import org.springframework.boot.jackson.JsonComponent;
+<i class="no-highlight">7</i>&nbsp;
+<i class="no-highlight">8</i>&nbsp;import java.io.IOException;
+<i class="no-highlight">9</i>&nbsp;import java.time.LocalDate;
+<i class="no-highlight">10</i>&nbsp;import java.time.format.DateTimeFormatter;
+<i class="no-highlight">11</i>&nbsp;import java.time.format.DateTimeFormatterBuilder;
+<i class="no-highlight">12</i>&nbsp;
+<i class="no-highlight">13</i>&nbsp;/**
+<i class="no-highlight">14</i>&nbsp; * Serialization for OffsetDataTime
+<i class="no-highlight">15</i>&nbsp; * 
+<i class="no-highlight">16</i>&nbsp; * @author x919576
+<i class="no-highlight">17</i>&nbsp; *
+<i class="no-highlight">18</i>&nbsp; */
+<i class="no-highlight">19</i>&nbsp;@JsonComponent
+<b class="fc"><i class="no-highlight">20</i>&nbsp;public class LocalDateDeserializer extends JsonDeserializer&lt;LocalDate&gt; {</b>
+<i class="no-highlight">21</i>&nbsp;
+<b class="fc"><i class="no-highlight">22</i>&nbsp;	private static final DateTimeFormatter DATE_TIME_FORMATTER = new DateTimeFormatterBuilder()</b>
+<b class="fc"><i class="no-highlight">23</i>&nbsp;			.appendOptional(DateTimeFormatter.ofPattern(&quot;yyyy-MM-dd&quot;)).toFormatter();</b>
+<i class="no-highlight">24</i>&nbsp;
+<i class="no-highlight">25</i>&nbsp;	@Override
+<i class="no-highlight">26</i>&nbsp;	public LocalDate deserialize(JsonParser jsonParser, DeserializationContext deserializationContext)
+<i class="no-highlight">27</i>&nbsp;			throws IOException {
+<b class="nc"><i class="no-highlight">28</i>&nbsp;		String dateAsString = jsonParser.getText();</b>
+<b class="nc"><i class="no-highlight">29</i>&nbsp;		if (dateAsString == null) {</b>
+<b class="nc"><i class="no-highlight">30</i>&nbsp;			throw new IOException(&quot;OffsetDateTime argument is null.&quot;);</b>
+<i class="no-highlight">31</i>&nbsp;		}
+<b class="nc"><i class="no-highlight">32</i>&nbsp;		return LocalDate.parse(dateAsString, DATE_TIME_FORMATTER);</b>
+<i class="no-highlight">33</i>&nbsp;	}
+<i class="no-highlight">34</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-04-19 19:23</div>
+</div>
+</body>
+</html>

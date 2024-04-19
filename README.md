@@ -15,11 +15,14 @@ Para finalizar con la capa de infraestructura encargada de contener los reposito
 
 Los test unitarios se encuentran en la carpeta Test del proyecto, hay 5 que se encargan de probar de principio a fin la funcionalidad del endpoint solicitado en la prueba, los realice de esa manera para poder testear todo el recorrido desde la llamada a nuestro controller en la capa de infraestrutura y todo su recorrido por el pri¡oyecto hasta la cadap domian que es la mas interna. En la revision realice otros 2 test mas pequeños para probar solamente una funcion especifica del servicio con cada test. En total son 7 tests:
 
-1.- getPriceByParametersSuccessfull(): Se encarga de testear el obtener un registro especifico de la BBDD, usando como parametros la fecha, el id de producto, el id de brand.
+JUnit- getPriceByParametersResultListId1() :  petición a las 10:00 del día 14 del producto 35455 para la brand 1 (ZARA).
+getPriceByParametersResultListId2(): petición a las 16:00 del día 14 del producto 35455 para la brand 1 (ZARA)
+getPriceByParametersResultListId3(): petición a las 21:00 del día 14 del producto 35455 para la brand 1 (ZARA)
+getPriceByParametersResultListId4(): petición a las 10:00 del día 15 del producto 35455 para la brand 1 (ZARA)
+getPriceByParametersResultListId5(): petición a las 21:00 del día 16 del producto 35455 para la brand 1 (ZARA)
+getPriceByParametersFail_EntityNotFoundException(): Se encarga de testear el proceso de solicitar un registro especifico de la BBDD, pero que no existe y deberia devolver una exception.
 
-2.- getPriceByParametersFail_EntityNotFoundException(): Se encarga de testear el proceso de solicitar un registro especifico de la BBDD, pero que no existe y deberia devolver una exception.
-
-3.- GetPriceByDateTest(): Se encarga de ejecutar un escenario de ejecucion con 5 ejemplos de datos de entrada.
+Test de CUCUMBER.- GetPriceByDateTest(): Se encarga de ejecutar un escenario de ejecucion con 5 ejemplos de datos de entrada.
 
 Feature: Get price by Date, Product Id and Brand Id
 In order to get a Price from the data base

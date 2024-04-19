@@ -1,0 +1,195 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > PriceInfrastructureMapperImpl</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.zara.spring.java.domain.mappers</a>
+</div>
+
+<h1>Coverage Summary for Class: PriceInfrastructureMapperImpl (com.zara.spring.java.domain.mappers)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+<th class="coverageStat 
+">
+  Class, %
+</th>
+<th class="coverageStat 
+">
+  Method, %
+</th>
+<th class="coverageStat 
+">
+  Line, %
+</th>
+</tr>
+<tr>
+  <td class="name">PriceInfrastructureMapperImpl</td>
+<td class="coverageStat">
+  <span class="percent">
+    100%
+  </span>
+  <span class="absValue">
+    (1/1)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    40%
+  </span>
+  <span class="absValue">
+    (2/5)
+  </span>
+</td>
+<td class="coverageStat">
+  <span class="percent">
+    31,7%
+  </span>
+  <span class="absValue">
+    (13/41)
+  </span>
+</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.zara.spring.java.domain.mappers;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import com.zara.spring.java.domain.models.PriceModel;
+<i class="no-highlight">4</i>&nbsp;import com.zara.spring.java.dto.PriceDTO;
+<i class="no-highlight">5</i>&nbsp;import java.math.BigDecimal;
+<i class="no-highlight">6</i>&nbsp;import java.util.ArrayList;
+<i class="no-highlight">7</i>&nbsp;import java.util.List;
+<i class="no-highlight">8</i>&nbsp;import javax.annotation.Generated;
+<i class="no-highlight">9</i>&nbsp;import org.springframework.stereotype.Component;
+<i class="no-highlight">10</i>&nbsp;
+<i class="no-highlight">11</i>&nbsp;@Generated(
+<i class="no-highlight">12</i>&nbsp;    value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
+<i class="no-highlight">13</i>&nbsp;    date = &quot;2024-04-19T19:23:14+0200&quot;,
+<i class="no-highlight">14</i>&nbsp;    comments = &quot;version: 1.5.5.Final, compiler: javac, environment: Java 17.0.9 (Oracle Corporation)&quot;
+<i class="no-highlight">15</i>&nbsp;)
+<i class="no-highlight">16</i>&nbsp;@Component
+<b class="fc"><i class="no-highlight">17</i>&nbsp;public class PriceInfrastructureMapperImpl extends PriceInfrastructureMapper {</b>
+<i class="no-highlight">18</i>&nbsp;
+<i class="no-highlight">19</i>&nbsp;    @Override
+<i class="no-highlight">20</i>&nbsp;    public PriceModel toEntity(PriceDTO t) {
+<b class="nc"><i class="no-highlight">21</i>&nbsp;        if ( t == null ) {</b>
+<b class="nc"><i class="no-highlight">22</i>&nbsp;            return null;</b>
+<i class="no-highlight">23</i>&nbsp;        }
+<i class="no-highlight">24</i>&nbsp;
+<b class="nc"><i class="no-highlight">25</i>&nbsp;        PriceModel.PriceModelBuilder priceModel = PriceModel.builder();</b>
+<i class="no-highlight">26</i>&nbsp;
+<b class="nc"><i class="no-highlight">27</i>&nbsp;        priceModel.priceListId( t.getPriceListId() );</b>
+<b class="nc"><i class="no-highlight">28</i>&nbsp;        priceModel.brandId( t.getBrandId() );</b>
+<b class="nc"><i class="no-highlight">29</i>&nbsp;        priceModel.startDate( t.getStartDate() );</b>
+<b class="nc"><i class="no-highlight">30</i>&nbsp;        priceModel.endDate( t.getEndDate() );</b>
+<b class="nc"><i class="no-highlight">31</i>&nbsp;        priceModel.productId( t.getProductId() );</b>
+<b class="nc"><i class="no-highlight">32</i>&nbsp;        priceModel.priority( t.getPriority() );</b>
+<b class="nc"><i class="no-highlight">33</i>&nbsp;        if ( t.getPrice() != null ) {</b>
+<b class="nc"><i class="no-highlight">34</i>&nbsp;            priceModel.price( t.getPrice().doubleValue() );</b>
+<i class="no-highlight">35</i>&nbsp;        }
+<b class="nc"><i class="no-highlight">36</i>&nbsp;        priceModel.currency( t.getCurrency() );</b>
+<i class="no-highlight">37</i>&nbsp;
+<b class="nc"><i class="no-highlight">38</i>&nbsp;        return priceModel.build();</b>
+<i class="no-highlight">39</i>&nbsp;    }
+<i class="no-highlight">40</i>&nbsp;
+<i class="no-highlight">41</i>&nbsp;    @Override
+<i class="no-highlight">42</i>&nbsp;    public List&lt;PriceModel&gt; toEntities(List&lt;PriceDTO&gt; tList) {
+<b class="nc"><i class="no-highlight">43</i>&nbsp;        if ( tList == null ) {</b>
+<b class="nc"><i class="no-highlight">44</i>&nbsp;            return null;</b>
+<i class="no-highlight">45</i>&nbsp;        }
+<i class="no-highlight">46</i>&nbsp;
+<b class="nc"><i class="no-highlight">47</i>&nbsp;        List&lt;PriceModel&gt; list = new ArrayList&lt;PriceModel&gt;( tList.size() );</b>
+<b class="nc"><i class="no-highlight">48</i>&nbsp;        for ( PriceDTO priceDTO : tList ) {</b>
+<b class="nc"><i class="no-highlight">49</i>&nbsp;            list.add( toEntity( priceDTO ) );</b>
+<b class="nc"><i class="no-highlight">50</i>&nbsp;        }</b>
+<i class="no-highlight">51</i>&nbsp;
+<b class="nc"><i class="no-highlight">52</i>&nbsp;        return list;</b>
+<i class="no-highlight">53</i>&nbsp;    }
+<i class="no-highlight">54</i>&nbsp;
+<i class="no-highlight">55</i>&nbsp;    @Override
+<i class="no-highlight">56</i>&nbsp;    public List&lt;PriceDTO&gt; toDTOList(List&lt;PriceModel&gt; sList) {
+<b class="nc"><i class="no-highlight">57</i>&nbsp;        if ( sList == null ) {</b>
+<b class="nc"><i class="no-highlight">58</i>&nbsp;            return null;</b>
+<i class="no-highlight">59</i>&nbsp;        }
+<i class="no-highlight">60</i>&nbsp;
+<b class="nc"><i class="no-highlight">61</i>&nbsp;        List&lt;PriceDTO&gt; list = new ArrayList&lt;PriceDTO&gt;( sList.size() );</b>
+<b class="nc"><i class="no-highlight">62</i>&nbsp;        for ( PriceModel priceModel : sList ) {</b>
+<b class="nc"><i class="no-highlight">63</i>&nbsp;            list.add( toDTO( priceModel ) );</b>
+<b class="nc"><i class="no-highlight">64</i>&nbsp;        }</b>
+<i class="no-highlight">65</i>&nbsp;
+<b class="nc"><i class="no-highlight">66</i>&nbsp;        return list;</b>
+<i class="no-highlight">67</i>&nbsp;    }
+<i class="no-highlight">68</i>&nbsp;
+<i class="no-highlight">69</i>&nbsp;    @Override
+<i class="no-highlight">70</i>&nbsp;    public PriceDTO toDTO(PriceModel priceModel) {
+<b class="fc"><i class="no-highlight">71</i>&nbsp;        if ( priceModel == null ) {</b>
+<b class="nc"><i class="no-highlight">72</i>&nbsp;            return null;</b>
+<i class="no-highlight">73</i>&nbsp;        }
+<i class="no-highlight">74</i>&nbsp;
+<b class="fc"><i class="no-highlight">75</i>&nbsp;        PriceDTO priceDTO = new PriceDTO();</b>
+<i class="no-highlight">76</i>&nbsp;
+<b class="fc"><i class="no-highlight">77</i>&nbsp;        priceDTO.setPriceListId( priceModel.getPriceListId() );</b>
+<b class="fc"><i class="no-highlight">78</i>&nbsp;        priceDTO.setBrandId( priceModel.getBrandId() );</b>
+<b class="fc"><i class="no-highlight">79</i>&nbsp;        priceDTO.setStartDate( priceModel.getStartDate() );</b>
+<b class="fc"><i class="no-highlight">80</i>&nbsp;        priceDTO.setEndDate( priceModel.getEndDate() );</b>
+<b class="fc"><i class="no-highlight">81</i>&nbsp;        priceDTO.setProductId( priceModel.getProductId() );</b>
+<b class="fc"><i class="no-highlight">82</i>&nbsp;        priceDTO.setPriority( priceModel.getPriority() );</b>
+<b class="fc"><i class="no-highlight">83</i>&nbsp;        if ( priceModel.getPrice() != null ) {</b>
+<b class="fc"><i class="no-highlight">84</i>&nbsp;            priceDTO.setPrice( BigDecimal.valueOf( priceModel.getPrice() ) );</b>
+<i class="no-highlight">85</i>&nbsp;        }
+<b class="fc"><i class="no-highlight">86</i>&nbsp;        priceDTO.setCurrency( priceModel.getCurrency() );</b>
+<i class="no-highlight">87</i>&nbsp;
+<b class="fc"><i class="no-highlight">88</i>&nbsp;        return priceDTO;</b>
+<i class="no-highlight">89</i>&nbsp;    }
+<i class="no-highlight">90</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-04-19 19:23</div>
+</div>
+</body>
+</html>

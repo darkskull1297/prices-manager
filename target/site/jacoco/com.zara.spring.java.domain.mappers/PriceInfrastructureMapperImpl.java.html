@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PriceInfrastructureMapperImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">prices-manager</a> &gt; <a href="index.source.html" class="el_package">com.zara.spring.java.domain.mappers</a> &gt; <span class="el_source">PriceInfrastructureMapperImpl.java</span></div><h1>PriceInfrastructureMapperImpl.java</h1><pre class="source lang-java linenums">package com.zara.spring.java.domain.mappers;
+
+import com.zara.spring.java.domain.models.PriceModel;
+import com.zara.spring.java.dto.PriceDTO;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+import javax.annotation.Generated;
+import org.springframework.stereotype.Component;
+
+@Generated(
+    value = &quot;org.mapstruct.ap.MappingProcessor&quot;,
+    date = &quot;2024-04-19T19:42:05+0200&quot;,
+    comments = &quot;version: 1.5.5.Final, compiler: javac, environment: Java 17.0.9 (Oracle Corporation)&quot;
+)
+@Component
+<span class="fc" id="L17">public class PriceInfrastructureMapperImpl extends PriceInfrastructureMapper {</span>
+
+    @Override
+    public PriceModel toEntity(PriceDTO t) {
+<span class="nc bnc" id="L21" title="All 2 branches missed.">        if ( t == null ) {</span>
+<span class="nc" id="L22">            return null;</span>
+        }
+
+<span class="nc" id="L25">        PriceModel.PriceModelBuilder priceModel = PriceModel.builder();</span>
+
+<span class="nc" id="L27">        priceModel.priceListId( t.getPriceListId() );</span>
+<span class="nc" id="L28">        priceModel.brandId( t.getBrandId() );</span>
+<span class="nc" id="L29">        priceModel.startDate( t.getStartDate() );</span>
+<span class="nc" id="L30">        priceModel.endDate( t.getEndDate() );</span>
+<span class="nc" id="L31">        priceModel.productId( t.getProductId() );</span>
+<span class="nc" id="L32">        priceModel.priority( t.getPriority() );</span>
+<span class="nc bnc" id="L33" title="All 2 branches missed.">        if ( t.getPrice() != null ) {</span>
+<span class="nc" id="L34">            priceModel.price( t.getPrice().doubleValue() );</span>
+        }
+<span class="nc" id="L36">        priceModel.currency( t.getCurrency() );</span>
+
+<span class="nc" id="L38">        return priceModel.build();</span>
+    }
+
+    @Override
+    public List&lt;PriceModel&gt; toEntities(List&lt;PriceDTO&gt; tList) {
+<span class="nc bnc" id="L43" title="All 2 branches missed.">        if ( tList == null ) {</span>
+<span class="nc" id="L44">            return null;</span>
+        }
+
+<span class="nc" id="L47">        List&lt;PriceModel&gt; list = new ArrayList&lt;PriceModel&gt;( tList.size() );</span>
+<span class="nc bnc" id="L48" title="All 2 branches missed.">        for ( PriceDTO priceDTO : tList ) {</span>
+<span class="nc" id="L49">            list.add( toEntity( priceDTO ) );</span>
+<span class="nc" id="L50">        }</span>
+
+<span class="nc" id="L52">        return list;</span>
+    }
+
+    @Override
+    public List&lt;PriceDTO&gt; toDTOList(List&lt;PriceModel&gt; sList) {
+<span class="nc bnc" id="L57" title="All 2 branches missed.">        if ( sList == null ) {</span>
+<span class="nc" id="L58">            return null;</span>
+        }
+
+<span class="nc" id="L61">        List&lt;PriceDTO&gt; list = new ArrayList&lt;PriceDTO&gt;( sList.size() );</span>
+<span class="nc bnc" id="L62" title="All 2 branches missed.">        for ( PriceModel priceModel : sList ) {</span>
+<span class="nc" id="L63">            list.add( toDTO( priceModel ) );</span>
+<span class="nc" id="L64">        }</span>
+
+<span class="nc" id="L66">        return list;</span>
+    }
+
+    @Override
+    public PriceDTO toDTO(PriceModel priceModel) {
+<span class="pc bpc" id="L71" title="1 of 2 branches missed.">        if ( priceModel == null ) {</span>
+<span class="nc" id="L72">            return null;</span>
+        }
+
+<span class="fc" id="L75">        PriceDTO priceDTO = new PriceDTO();</span>
+
+<span class="fc" id="L77">        priceDTO.setPriceListId( priceModel.getPriceListId() );</span>
+<span class="fc" id="L78">        priceDTO.setBrandId( priceModel.getBrandId() );</span>
+<span class="fc" id="L79">        priceDTO.setStartDate( priceModel.getStartDate() );</span>
+<span class="fc" id="L80">        priceDTO.setEndDate( priceModel.getEndDate() );</span>
+<span class="fc" id="L81">        priceDTO.setProductId( priceModel.getProductId() );</span>
+<span class="fc" id="L82">        priceDTO.setPriority( priceModel.getPriority() );</span>
+<span class="pc bpc" id="L83" title="1 of 2 branches missed.">        if ( priceModel.getPrice() != null ) {</span>
+<span class="fc" id="L84">            priceDTO.setPrice( BigDecimal.valueOf( priceModel.getPrice() ) );</span>
+        }
+<span class="fc" id="L86">        priceDTO.setCurrency( priceModel.getCurrency() );</span>
+
+<span class="fc" id="L88">        return priceDTO;</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>StatusHealthDTO.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">prices-manager</a> &gt; <a href="index.source.html" class="el_package">com.zara.spring.java.dto</a> &gt; <span class="el_source">StatusHealthDTO.java</span></div><h1>StatusHealthDTO.java</h1><pre class="source lang-java linenums">package com.zara.spring.java.dto;
+
+import java.util.Objects;
+import io.swagger.v3.oas.annotations.media.Schema;
+import com.fasterxml.jackson.annotation.JsonValue;
+import java.io.Serializable;
+import org.springframework.validation.annotation.Validated;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+
+/**
+ * Status of the component. - UP: Status indicating that the component or subsystem is functioning as expected. - DOWN: Status indicating that the component or subsystem has suffered an unexpected failure. - OUT_OF_SERVICE: Status indicating that the component or subsystem has been taken out of service and should not be used. - UNKNOWN: Status indicating that the component or subsystem is in an unknown state. 
+ */
+<span class="nc" id="L16">public enum StatusHealthDTO {</span>
+<span class="nc" id="L17">  UP(&quot;UP&quot;),</span>
+<span class="nc" id="L18">    DOWN(&quot;DOWN&quot;),</span>
+<span class="nc" id="L19">    UNKNOWN(&quot;UNKNOWN&quot;),</span>
+<span class="nc" id="L20">    OUT_OF_SERVICE(&quot;OUT_OF_SERVICE&quot;);</span>
+
+  private String value;
+
+<span class="nc" id="L24">  StatusHealthDTO(String value) {</span>
+<span class="nc" id="L25">    this.value = value;</span>
+<span class="nc" id="L26">  }</span>
+
+  @Override
+  @JsonValue
+  public String toString() {
+<span class="nc" id="L31">    return String.valueOf(value);</span>
+  }
+
+  @JsonCreator
+  public static StatusHealthDTO fromValue(String text) {
+<span class="nc bnc" id="L36" title="All 2 branches missed.">    for (StatusHealthDTO b : StatusHealthDTO.values()) {</span>
+<span class="nc bnc" id="L37" title="All 2 branches missed.">      if (String.valueOf(b.value).equals(text)) {</span>
+<span class="nc" id="L38">        return b;</span>
+      }
+    }
+<span class="nc" id="L41">    return null;</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

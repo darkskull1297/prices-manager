@@ -1,0 +1,257 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PriceDTO.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">prices-manager</a> &gt; <a href="index.source.html" class="el_package">com.zara.spring.java.dto</a> &gt; <span class="el_source">PriceDTO.java</span></div><h1>PriceDTO.java</h1><pre class="source lang-java linenums">package com.zara.spring.java.dto;
+
+import java.util.Objects;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import io.swagger.v3.oas.annotations.media.Schema;
+import java.math.BigDecimal;
+import java.time.OffsetDateTime;
+import java.io.Serializable;
+import org.springframework.validation.annotation.Validated;
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.*;
+
+/**
+ * Data structure containing the purchase order details.
+ */
+@Schema(description = &quot;Data structure containing the purchase order details.&quot;)
+@Validated
+@jakarta.annotation.Generated(value = &quot;io.swagger.codegen.v3.generators.java.SpringCodegen&quot;, date = &quot;2024-04-19T19:41:52.939697500+02:00[Europe/Madrid]&quot;)
+
+
+<span class="fc" id="L22">public class PriceDTO  implements Serializable , InlineResponse200DTO  {</span>
+  private static final long serialVersionUID = 1L;
+
+<span class="fc" id="L25">  @JsonProperty(&quot;priceListId&quot;)</span>
+  private Integer priceListId = null;
+
+<span class="fc" id="L28">  @JsonProperty(&quot;brandId&quot;)</span>
+  private Integer brandId = null;
+
+<span class="fc" id="L31">  @JsonProperty(&quot;startDate&quot;)</span>
+  private OffsetDateTime startDate = null;
+
+<span class="fc" id="L34">  @JsonProperty(&quot;endDate&quot;)</span>
+  private OffsetDateTime endDate = null;
+
+<span class="fc" id="L37">  @JsonProperty(&quot;productId&quot;)</span>
+  private Integer productId = null;
+
+<span class="fc" id="L40">  @JsonProperty(&quot;priority&quot;)</span>
+  private Integer priority = null;
+
+<span class="fc" id="L43">  @JsonProperty(&quot;price&quot;)</span>
+  private BigDecimal price = null;
+
+<span class="fc" id="L46">  @JsonProperty(&quot;currency&quot;)</span>
+  private String currency = null;
+
+  public PriceDTO priceListId(Integer priceListId) {
+<span class="nc" id="L50">    this.priceListId = priceListId;</span>
+<span class="nc" id="L51">    return this;</span>
+  }
+
+  /**
+   * Price List ID.
+   * @return priceListId
+   **/
+  @Schema(example = &quot;1&quot;, description = &quot;Price List ID.&quot;)
+  
+    public Integer getPriceListId() {
+<span class="fc" id="L61">    return priceListId;</span>
+  }
+
+  public void setPriceListId(Integer priceListId) {
+<span class="fc" id="L65">    this.priceListId = priceListId;</span>
+<span class="fc" id="L66">  }</span>
+
+  public PriceDTO brandId(Integer brandId) {
+<span class="nc" id="L69">    this.brandId = brandId;</span>
+<span class="nc" id="L70">    return this;</span>
+  }
+
+  /**
+   * Brand ID.
+   * @return brandId
+   **/
+  @Schema(example = &quot;1&quot;, description = &quot;Brand ID.&quot;)
+  
+    public Integer getBrandId() {
+<span class="fc" id="L80">    return brandId;</span>
+  }
+
+  public void setBrandId(Integer brandId) {
+<span class="fc" id="L84">    this.brandId = brandId;</span>
+<span class="fc" id="L85">  }</span>
+
+  public PriceDTO startDate(OffsetDateTime startDate) {
+<span class="nc" id="L88">    this.startDate = startDate;</span>
+<span class="nc" id="L89">    return this;</span>
+  }
+
+  /**
+   * Start date for the Price.
+   * @return startDate
+   **/
+  @Schema(example = &quot;2020-07-21T17:32:28Z&quot;, description = &quot;Start date for the Price.&quot;)
+  
+    @Valid
+    public OffsetDateTime getStartDate() {
+<span class="fc" id="L100">    return startDate;</span>
+  }
+
+  public void setStartDate(OffsetDateTime startDate) {
+<span class="fc" id="L104">    this.startDate = startDate;</span>
+<span class="fc" id="L105">  }</span>
+
+  public PriceDTO endDate(OffsetDateTime endDate) {
+<span class="nc" id="L108">    this.endDate = endDate;</span>
+<span class="nc" id="L109">    return this;</span>
+  }
+
+  /**
+   * End date for the Price.
+   * @return endDate
+   **/
+  @Schema(example = &quot;2020-07-21T17:32:28Z&quot;, description = &quot;End date for the Price.&quot;)
+  
+    @Valid
+    public OffsetDateTime getEndDate() {
+<span class="fc" id="L120">    return endDate;</span>
+  }
+
+  public void setEndDate(OffsetDateTime endDate) {
+<span class="fc" id="L124">    this.endDate = endDate;</span>
+<span class="fc" id="L125">  }</span>
+
+  public PriceDTO productId(Integer productId) {
+<span class="nc" id="L128">    this.productId = productId;</span>
+<span class="nc" id="L129">    return this;</span>
+  }
+
+  /**
+   * Product ID.
+   * @return productId
+   **/
+  @Schema(example = &quot;1&quot;, description = &quot;Product ID.&quot;)
+  
+    public Integer getProductId() {
+<span class="fc" id="L139">    return productId;</span>
+  }
+
+  public void setProductId(Integer productId) {
+<span class="fc" id="L143">    this.productId = productId;</span>
+<span class="fc" id="L144">  }</span>
+
+  public PriceDTO priority(Integer priority) {
+<span class="nc" id="L147">    this.priority = priority;</span>
+<span class="nc" id="L148">    return this;</span>
+  }
+
+  /**
+   * Pr ID.
+   * @return priority
+   **/
+  @Schema(example = &quot;1&quot;, description = &quot;Pr ID.&quot;)
+  
+    public Integer getPriority() {
+<span class="fc" id="L158">    return priority;</span>
+  }
+
+  public void setPriority(Integer priority) {
+<span class="fc" id="L162">    this.priority = priority;</span>
+<span class="fc" id="L163">  }</span>
+
+  public PriceDTO price(BigDecimal price) {
+<span class="nc" id="L166">    this.price = price;</span>
+<span class="nc" id="L167">    return this;</span>
+  }
+
+  /**
+   * Transfer Order number code.
+   * @return price
+   **/
+  @Schema(example = &quot;35.40&quot;, description = &quot;Transfer Order number code.&quot;)
+  
+    @Valid
+    public BigDecimal getPrice() {
+<span class="fc" id="L178">    return price;</span>
+  }
+
+  public void setPrice(BigDecimal price) {
+<span class="fc" id="L182">    this.price = price;</span>
+<span class="fc" id="L183">  }</span>
+
+  public PriceDTO currency(String currency) {
+<span class="nc" id="L186">    this.currency = currency;</span>
+<span class="nc" id="L187">    return this;</span>
+  }
+
+  /**
+   * Currency.
+   * @return currency
+   **/
+  @Schema(example = &quot;EUR&quot;, description = &quot;Currency.&quot;)
+  
+  @Size(min=3,max=3)   public String getCurrency() {
+<span class="fc" id="L197">    return currency;</span>
+  }
+
+  public void setCurrency(String currency) {
+<span class="fc" id="L201">    this.currency = currency;</span>
+<span class="fc" id="L202">  }</span>
+
+
+  @Override
+  public boolean equals(java.lang.Object o) {
+<span class="nc bnc" id="L207" title="All 2 branches missed.">    if (this == o) {</span>
+<span class="nc" id="L208">      return true;</span>
+    }
+<span class="nc bnc" id="L210" title="All 4 branches missed.">    if (o == null || getClass() != o.getClass()) {</span>
+<span class="nc" id="L211">      return false;</span>
+    }
+<span class="nc" id="L213">    PriceDTO price = (PriceDTO) o;</span>
+<span class="nc bnc" id="L214" title="All 2 branches missed.">    return Objects.equals(this.priceListId, price.priceListId) &amp;&amp;</span>
+<span class="nc bnc" id="L215" title="All 2 branches missed.">        Objects.equals(this.brandId, price.brandId) &amp;&amp;</span>
+<span class="nc bnc" id="L216" title="All 2 branches missed.">        Objects.equals(this.startDate, price.startDate) &amp;&amp;</span>
+<span class="nc bnc" id="L217" title="All 2 branches missed.">        Objects.equals(this.endDate, price.endDate) &amp;&amp;</span>
+<span class="nc bnc" id="L218" title="All 2 branches missed.">        Objects.equals(this.productId, price.productId) &amp;&amp;</span>
+<span class="nc bnc" id="L219" title="All 2 branches missed.">        Objects.equals(this.priority, price.priority) &amp;&amp;</span>
+<span class="nc bnc" id="L220" title="All 2 branches missed.">        Objects.equals(this.price, price.price) &amp;&amp;</span>
+<span class="nc bnc" id="L221" title="All 2 branches missed.">        Objects.equals(this.currency, price.currency);</span>
+  }
+
+  @Override
+  public int hashCode() {
+<span class="nc" id="L226">    return Objects.hash(priceListId, brandId, startDate, endDate, productId, priority, price, currency);</span>
+  }
+
+  @Override
+  public String toString() {
+<span class="nc" id="L231">    StringBuilder sb = new StringBuilder();</span>
+<span class="nc" id="L232">    sb.append(&quot;class PriceDTO {\n&quot;);</span>
+    
+<span class="nc" id="L234">    sb.append(&quot;    priceListId: &quot;).append(toIndentedString(priceListId)).append(&quot;\n&quot;);</span>
+<span class="nc" id="L235">    sb.append(&quot;    brandId: &quot;).append(toIndentedString(brandId)).append(&quot;\n&quot;);</span>
+<span class="nc" id="L236">    sb.append(&quot;    startDate: &quot;).append(toIndentedString(startDate)).append(&quot;\n&quot;);</span>
+<span class="nc" id="L237">    sb.append(&quot;    endDate: &quot;).append(toIndentedString(endDate)).append(&quot;\n&quot;);</span>
+<span class="nc" id="L238">    sb.append(&quot;    productId: &quot;).append(toIndentedString(productId)).append(&quot;\n&quot;);</span>
+<span class="nc" id="L239">    sb.append(&quot;    priority: &quot;).append(toIndentedString(priority)).append(&quot;\n&quot;);</span>
+<span class="nc" id="L240">    sb.append(&quot;    price: &quot;).append(toIndentedString(price)).append(&quot;\n&quot;);</span>
+<span class="nc" id="L241">    sb.append(&quot;    currency: &quot;).append(toIndentedString(currency)).append(&quot;\n&quot;);</span>
+<span class="nc" id="L242">    sb.append(&quot;}&quot;);</span>
+<span class="nc" id="L243">    return sb.toString();</span>
+  }
+
+  /**
+   * Convert the given object to string with each line indented by 4 spaces
+   * (except the first line).
+   */
+  private String toIndentedString(java.lang.Object o) {
+<span class="nc bnc" id="L251" title="All 2 branches missed.">    if (o == null) {</span>
+<span class="nc" id="L252">      return &quot;null&quot;;</span>
+    }
+<span class="nc" id="L254">    return o.toString().replace(&quot;\n&quot;, &quot;\n    &quot;);</span>
+  }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

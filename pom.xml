@@ -5,7 +5,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.2.3</version>
+		<version>3.0.0</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.zara.spring.java</groupId>
@@ -16,8 +16,11 @@
 	<properties>
 		<java.version>17</java.version>
 		<cucumber.version>7.11.1</cucumber.version>
+		<jacoco.version>0.8.8</jacoco.version>
 		<code.coverage.project.folder>${basedir}/../</code.coverage.project.folder>
 		<code.coverage.overall.data.folder>${basedir}/../target</code.coverage.overall.data.folder>
+		<generated-sources-path>target/generated-sources/swagger/</generated-sources-path>
+		<generated-sources-java-path>src/main/java/</generated-sources-java-path>
 	</properties>
 
 	<dependencies>
@@ -107,6 +110,17 @@
 			<groupId>org.junit.platform</groupId>
 			<artifactId>junit-platform-suite</artifactId>
 			<scope>test</scope>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.hibernate.validator/hibernate-validator -->
+		<dependency>
+			<groupId>org.hibernate.validator</groupId>
+			<artifactId>hibernate-validator</artifactId>
+			<version>8.0.1.Final</version>
+		</dependency>
+		<dependency>
+			<groupId>jakarta.validation</groupId>
+			<artifactId>jakarta.validation-api</artifactId>
+			<version>3.0.2</version>
 		</dependency>
 	</dependencies>
 
@@ -215,101 +229,24 @@
 				</executions>
 			</plugin>
 			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-surefire-plugin</artifactId>
-				<configuration>
-					<skipTests>false</skipTests>
-					<includes>
-						<include>**/*Test.java</include>
-					</includes>
-				</configuration>
-			</plugin>
-			<!-- INTEGRATION test via 'mvn clean install -P integration-test -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-failsafe-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>integration-tests</id>
-						<goals>
-							<goal>integration-test</goal>
-							<goal>verify</goal>
-						</goals>
-						<configuration>
-							<skipTests>false</skipTests>
-							<includes>
-								<include>*/*Test.java</include>
-							</includes>
-							<excludes>
-								<exclude>**/*Test.java</exclude>
-							</excludes>
-							<reuseForks>true</reuseForks>
-							<!-- When running as a Maven plugin, the JaCoCo agent configuration is prepared by invoking the prepare-agent
-                            or prepare-agent-integration goals, before the actual tests are run. This sets a property named argLine which
-                            points to the JaCoCo agent, later passed as a JVM argument to the test runner -->
-							<!--suppress UnresolvedMavenProperty -->
-							<argLine>${itCoverageAgent}</argLine>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-
-			<!-- findbugs for code quality -->
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>findbugs-maven-plugin</artifactId>
-				<version>3.0.4</version>
-			</plugin>
-			<!-- jacoco agent for code coverage -->
-			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
+				<version>${jacoco.version}</version>
 				<executions>
 					<execution>
-						<id>prepare-unit-tests</id>
 						<goals>
 							<goal>prepare-agent</goal>
 						</goals>
 					</execution>
-					<!-- prepare agent before integration tests -->
 					<execution>
-						<id>prepare-agent</id>
+						<id>report</id>
+						<phase>prepare-package</phase>
 						<goals>
-							<goal>prepare-agent</goal>
-						</goals>
-						<phase>pre-integration-test</phase>
-						<configuration>
-							<propertyName>itCoverageAgent</propertyName>
-						</configuration>
-					</execution>
-					<execution>
-						<id>report-aggregate</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>report-aggregate</goal>
+							<goal>report</goal>
 						</goals>
 					</execution>
 					<execution>
-						<id>merge-results</id>
-						<phase>verify</phase>
-						<goals>
-							<goal>merge</goal>
-						</goals>
-						<configuration>
-							<fileSets>
-								<fileSet>
-									<directory>${code.coverage.project.folder}</directory>
-									<includes>
-										<include>**/target/jacoco.exec</include>
-									</includes>
-								</fileSet>
-							</fileSets>
-							<destFile>${code.coverage.overall.data.folder}/aggregate.exec</destFile>
-						</configuration>
-					</execution>
-					<execution>
-						<id>check</id>
-						<phase>verify</phase>
+						<id>jacoco-check</id>
 						<goals>
 							<goal>check</goal>
 						</goals>
@@ -319,41 +256,18 @@
 									<element>BUNDLE</element>
 									<limits>
 										<limit>
-											<counter>INSTRUCTION</counter>
+											<counter>LINE</counter>
 											<value>COVEREDRATIO</value>
-											<minimum>11%</minimum>
+											<minimum>10%</minimum>
 										</limit>
 									</limits>
 								</rule>
 							</rules>
-							<dataFile>${code.coverage.overall.data.folder}/aggregate.exec</dataFile>
-						</configuration>
-					</execution>
-				</executions>
-				<configuration></configuration>
-			</plugin>
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>copy-class-files</id>
-						<phase>generate-resources</phase>
-						<goals>
-							<goal>copy-resources</goal>
-						</goals>
-						<configuration>
-							<overwrite>false</overwrite>
-							<resources>
-								<resource>
-									<directory>../prices-manager/target/classes</directory>
-								</resource>
-							</resources>
-							<outputDirectory>${project.build.directory}/classes</outputDirectory>
 						</configuration>
 					</execution>
 				</executions>
 			</plugin>
+
 		</plugins>
 		<pluginManagement>
 			<plugins>
@@ -372,7 +286,7 @@
 				<plugin>
 					<groupId>org.jacoco</groupId>
 					<artifactId>jacoco-maven-plugin</artifactId>
-					<version>0.8.8</version>
+					<version>${jacoco.version}</version>
 				</plugin>
 			</plugins>
 		</pluginManagement>

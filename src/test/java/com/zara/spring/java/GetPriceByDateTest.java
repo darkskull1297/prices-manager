@@ -51,6 +51,5 @@ public class GetPriceByDateTest {
     public void iVerifyThePriceIdReceived(String id) throws IOException {
         PriceDTO priceDTO = objectMapper.readValue(resultOut.getResponse().getContentAsByteArray(), PriceDTO.class);
         assertThat(priceDTO.getPriceListId()).isEqualTo(Integer.parseInt(id));
-
     }
 }

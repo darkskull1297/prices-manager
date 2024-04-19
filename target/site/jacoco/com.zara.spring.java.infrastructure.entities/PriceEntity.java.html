@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>PriceEntity.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">prices-manager</a> &gt; <a href="index.source.html" class="el_package">com.zara.spring.java.infrastructure.entities</a> &gt; <span class="el_source">PriceEntity.java</span></div><h1>PriceEntity.java</h1><pre class="source lang-java linenums">package com.zara.spring.java.infrastructure.entities;
+
+import com.zara.spring.java.domain.models.PriceModel;
+import jakarta.persistence.*;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+import java.time.OffsetDateTime;
+
+@Entity
+@Table(name = &quot;PRICE&quot;)
+@Data
+@NoArgsConstructor
+public class PriceEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = &quot;PRICE_LIST_ID&quot;)
+    private Integer priceListId;
+    @Column(name = &quot;BRAND_ID&quot;)
+    private Integer brandId;
+    @Column(name = &quot;START_DATE&quot;)
+    private OffsetDateTime startDate;
+    @Column(name = &quot;END_DATE&quot;)
+    private OffsetDateTime endDate;
+    @Column(name = &quot;PRODUCT_ID&quot;)
+    private Integer productId;
+    @Column(name = &quot;PRIORITY&quot;)
+    private Integer priority;
+    @Column(name = &quot;PRICE_AMOUNT&quot;)
+    private Double price;
+    @Column(name = &quot;CURRENCY&quot;)
+    private String currency;
+
+    public static PriceModel fromEntityToModel(PriceEntity priceEntity){
+<span class="fc" id="L36">        return PriceModel.builder()</span>
+<span class="fc" id="L37">                .brandId(priceEntity.getBrandId())</span>
+<span class="fc" id="L38">                .startDate(priceEntity.getStartDate())</span>
+<span class="fc" id="L39">                .endDate(priceEntity.getEndDate())</span>
+<span class="fc" id="L40">                .priceListId(priceEntity.getPriceListId())</span>
+<span class="fc" id="L41">                .productId(priceEntity.getProductId())</span>
+<span class="fc" id="L42">                .priority(priceEntity.getPriority())</span>
+<span class="fc" id="L43">                .price(priceEntity.getPrice())</span>
+<span class="fc" id="L44">                .currency(priceEntity.currency).build();</span>
+    }
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

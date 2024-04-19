@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="es"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>ExceptionHandlerController.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">prices-manager</a> &gt; <a href="index.source.html" class="el_package">com.zara.spring.java.application.controllers.generic</a> &gt; <span class="el_source">ExceptionHandlerController.java</span></div><h1>ExceptionHandlerController.java</h1><pre class="source lang-java linenums">package com.zara.spring.java.application.controllers.generic;
+
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.validation.ConstraintViolation;
+import jakarta.validation.ConstraintViolationException;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.BindException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
+import org.springframework.web.multipart.MaxUploadSizeExceededException;
+
+import java.io.IOException;
+import java.util.*;
+
+@ControllerAdvice
+@RequestMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+<span class="fc" id="L23">@Slf4j</span>
+<span class="fc" id="L24">public class ExceptionHandlerController {</span>
+    private static final int UNAUTHORIZED = 401;
+    private static final int BAD_REQUEST = 400;
+    private static final int NOT_FOUND = 404;
+    private static final int CONFLICT = 409;
+    private static final int TOO_MANY_REQUESTS = 429;
+    private static final int SERVICE_UNAVAILABLE = 503;
+
+    /**
+     * HttpClientErrorException handler, return rich information error.
+     *
+     * @param request a {@link HttpServletRequest} object.
+     * @param ex      a {@link HttpClientErrorException} object.
+     * @return a {@link ResponseEntity} object.
+     */
+    @ExceptionHandler(HttpClientErrorException.class)
+    @ResponseBody
+    public ResponseEntity&lt;ErrorsDTO&gt; httpClientErrorHandler(HttpServletRequest request, HttpClientErrorException ex) {
+<span class="nc" id="L42">        String errorCode = ex.getStatusCode().toString();</span>
+<span class="nc bnc" id="L43" title="All 7 branches missed.">        switch (ex.getStatusCode().value()) {</span>
+            case UNAUTHORIZED:
+<span class="nc" id="L45">                return error(ex, HttpStatus.UNAUTHORIZED, errorCode, ErrorDTO.LevelEnum.ERROR,</span>
+<span class="nc" id="L46">                        HttpStatus.UNAUTHORIZED.getReasonPhrase(), new Object[] { null });</span>
+            case BAD_REQUEST: {
+<span class="nc" id="L48">                return error(ex, HttpStatus.BAD_REQUEST, errorCode, ErrorDTO.LevelEnum.ERROR,</span>
+<span class="nc" id="L49">                        HttpStatus.BAD_REQUEST.getReasonPhrase(), new Object[] { null });</span>
+            }
+            case NOT_FOUND: {
+<span class="nc" id="L52">                return error(ex, HttpStatus.NOT_FOUND, errorCode, ErrorDTO.LevelEnum.ERROR, HttpStatus.NOT_FOUND.getReasonPhrase(),</span>
+                        new Object[] { null });
+            }
+            case TOO_MANY_REQUESTS: {
+<span class="nc" id="L56">                return error(ex, HttpStatus.TOO_MANY_REQUESTS, errorCode, ErrorDTO.LevelEnum.ERROR,</span>
+<span class="nc" id="L57">                        HttpStatus.TOO_MANY_REQUESTS.getReasonPhrase(), new Object[] { null });</span>
+            }
+            case SERVICE_UNAVAILABLE: {
+<span class="nc" id="L60">                return error(ex, HttpStatus.SERVICE_UNAVAILABLE, errorCode, ErrorDTO.LevelEnum.ERROR,</span>
+<span class="nc" id="L61">                        HttpStatus.SERVICE_UNAVAILABLE.getReasonPhrase(), new Object[] { null });</span>
+            }
+            case CONFLICT: {
+<span class="nc" id="L64">                return error(ex, HttpStatus.INTERNAL_SERVER_ERROR, errorCode, ErrorDTO.LevelEnum.ERROR, ex.getStatusText(),</span>
+                        new Object[] { null });
+            }
+            default: {
+<span class="nc" id="L68">                return error(ex, HttpStatus.INTERNAL_SERVER_ERROR, errorCode, ErrorDTO.LevelEnum.ERROR,</span>
+<span class="nc" id="L69">                        HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase(), new Object[] { null });</span>
+            }
+        }
+    }
+
+    /**
+     * Constraint violation exception handler, return rich information error.
+     *
+     * @param ex a {@link ConstraintViolationException} object.
+     * @return a {@link ResponseEntity} object.
+     */
+    @ExceptionHandler(value = { ConstraintViolationException.class })
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity&lt;ErrorsDTO&gt; constraintValidationExceptionHandler(ConstraintViolationException ex) {
+<span class="nc bnc" id="L83" title="All 2 branches missed.">        Set&lt;ConstraintViolation&lt;?&gt;&gt; listErrors = ex.getConstraintViolations() == null ? new HashSet&lt;&gt;()</span>
+<span class="nc" id="L84">                : ex.getConstraintViolations();</span>
+<span class="nc" id="L85">        LOGGER.error(ex.getLocalizedMessage());</span>
+<span class="nc" id="L86">        String errorCode = Integer.toString(BAD_REQUEST);</span>
+<span class="nc" id="L87">        return error(ex, HttpStatus.BAD_REQUEST, errorCode, ErrorDTO.LevelEnum.FATAL, HttpStatus.BAD_REQUEST.getReasonPhrase(),</span>
+<span class="nc" id="L88">                listErrors.stream().map(x -&gt; {</span>
+<span class="nc" id="L89">                    String result = &quot;null&quot;;</span>
+<span class="nc bnc" id="L90" title="All 2 branches missed.">                    if (x != null) {</span>
+<span class="nc" id="L91">                        result = x.getMessage();</span>
+                    }
+<span class="nc" id="L93">                    return result;</span>
+<span class="nc" id="L94">                }).toArray());</span>
+    }
+
+    /**
+     * Entity Not Found exception handler, return rich information error.
+     *
+     * @param ex a {@link ConstraintViolationException} object.
+     * @return a {@link ResponseEntity} object.
+     */
+    @ExceptionHandler(value = { EntityNotFoundException.class })
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ResponseEntity&lt;ErrorsDTO&gt; entityNotFoundExceptionHandler(EntityNotFoundException ex) {
+<span class="nc" id="L106">        LOGGER.error(ex.getLocalizedMessage());</span>
+<span class="nc" id="L107">        ErrorDTO error = new ErrorDTO().code(Integer.toString(HttpStatus.NOT_FOUND.value()))</span>
+<span class="nc" id="L108">                .description(HttpStatus.NOT_FOUND.getReasonPhrase()).level(ErrorDTO.LevelEnum.ERROR)</span>
+<span class="nc" id="L109">                .message(ex.getLocalizedMessage());</span>
+
+<span class="nc" id="L111">        return new ResponseEntity&lt;&gt;(new ErrorsDTO().errors(Collections.singletonList(error)), HttpStatus.NOT_FOUND);</span>
+    }
+
+    /**
+     * Capture a methodArgumentNotValidException and returned rich information
+     * error.
+     *
+     * @param ex a {@link MethodArgumentNotValidException} object.
+     * @return a {@link ResponseEntity} object.
+     */
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(value = { MethodArgumentNotValidException.class })
+    public ResponseEntity&lt;ErrorsDTO&gt; methodArgumentNotValidExceptionHandler(MethodArgumentNotValidException ex) {
+<span class="nc" id="L124">        LOGGER.error(ex.getLocalizedMessage());</span>
+<span class="nc" id="L125">        String errorCode = Integer.toString(BAD_REQUEST);</span>
+<span class="nc" id="L126">        return error(ex, HttpStatus.BAD_REQUEST, errorCode, ErrorDTO.LevelEnum.FATAL, HttpStatus.BAD_REQUEST.getReasonPhrase(),</span>
+<span class="nc" id="L127">                ex.getBindingResult().getAllErrors().stream().map(x -&gt; {</span>
+<span class="nc bnc" id="L128" title="All 2 branches missed.">                    if (x != null) {</span>
+<span class="nc" id="L129">                        return x.getDefaultMessage();</span>
+                    }
+<span class="nc" id="L131">                    return &quot;null&quot;;</span>
+<span class="nc" id="L132">                }).toArray());</span>
+    }
+
+    /**
+     * Capture when an Exception type exception is thrown and masks the information
+     * returned.
+     *
+     * @param request a {@link HttpServletRequest} object.
+     * @param ex      a {@link Exception} exception thrown
+     * @return a {@link ResponseEntity} object.
+     */
+    @ExceptionHandler({ IOException.class, Exception.class })
+    public ResponseEntity&lt;ErrorsDTO&gt; genericExceptionHandler(HttpServletRequest request, Exception ex) {
+<span class="nc bnc" id="L145" title="All 4 branches missed.">        if (request != null &amp;&amp; ex != null) {</span>
+<span class="nc" id="L146">            LOGGER.error(&quot;Exception Occurred:: URL:{&quot; + request.getRequestURL().toString() + &quot;}, &quot; + &quot;class:{&quot;</span>
+<span class="nc" id="L147">                    + ex.getClass() + &quot;},&quot; + &quot; error:{&quot; + ex.getLocalizedMessage() + &quot;}&quot;);</span>
+        }
+<span class="nc" id="L149">        String errorCode = Integer.toString(HttpStatus.INTERNAL_SERVER_ERROR.value());</span>
+<span class="nc bnc" id="L150" title="All 2 branches missed.">        LOGGER.error(ex == null ? &quot;Exception null&quot; : ex.getLocalizedMessage());</span>
+<span class="nc" id="L151">        ErrorDTO error = new ErrorDTO().code(errorCode).description(HttpStatus.INTERNAL_SERVER_ERROR.getReasonPhrase())</span>
+<span class="nc" id="L152">                .level(ErrorDTO.LevelEnum.ERROR).message(ex.getLocalizedMessage());</span>
+
+<span class="nc" id="L154">        return new ResponseEntity&lt;&gt;(new ErrorsDTO().errors(Collections.singletonList(error)),</span>
+                HttpStatus.INTERNAL_SERVER_ERROR);
+    }
+
+    /**
+     * &lt;p&gt;
+     * bindExceptionHandler.
+     * &lt;/p&gt;
+     *
+     * @param ex a {@link MethodArgumentNotValidException} object.
+     * @return a {@link ResponseEntity} object.
+     */
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(BindException.class)
+    public ResponseEntity&lt;ErrorsDTO&gt; bindExceptionHandler(BindException ex) {
+<span class="nc" id="L169">        LOGGER.error(ex.getLocalizedMessage());</span>
+<span class="nc" id="L170">        String errorCode = Integer.toString(BAD_REQUEST);</span>
+<span class="nc" id="L171">        return error(ex, HttpStatus.BAD_REQUEST, errorCode, ErrorDTO.LevelEnum.FATAL, HttpStatus.BAD_REQUEST.getReasonPhrase(),</span>
+<span class="nc" id="L172">                ex.getBindingResult().getAllErrors().stream().map(x -&gt; {</span>
+<span class="nc" id="L173">                    String result = &quot;null&quot;;</span>
+<span class="nc bnc" id="L174" title="All 2 branches missed.">                    if (x != null) {</span>
+<span class="nc" id="L175">                        result = x.getDefaultMessage();</span>
+                    }
+<span class="nc" id="L177">                    return result;</span>
+<span class="nc" id="L178">                }).toArray());</span>
+    }
+
+    /**
+     * Constraint violation exception handler, return rich information error.
+     *
+     * @param matme a {@link MethodArgumentTypeMismatchException} object.
+     * @return a {@link ResponseEntity} object.
+     */
+    @ExceptionHandler(value = { MethodArgumentTypeMismatchException.class })
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseEntity&lt;ErrorsDTO&gt; methodMethodArgumentTypeMismatchExceptionHandler(
+            MethodArgumentTypeMismatchException matme) {
+
+<span class="nc" id="L192">        String[] listErrors = { matme.getMessage() };</span>
+
+<span class="nc" id="L194">        LOGGER.error(matme.getLocalizedMessage());</span>
+<span class="nc" id="L195">        String errorCode = Integer.toString(BAD_REQUEST);</span>
+<span class="nc" id="L196">        return error(matme, HttpStatus.BAD_REQUEST, errorCode, ErrorDTO.LevelEnum.FATAL,</span>
+<span class="nc" id="L197">                HttpStatus.BAD_REQUEST.getReasonPhrase(), listErrors);</span>
+    }
+
+    /**
+     * Max upload size Handler for the files
+     *
+     * @param exc a {@link MaxUploadSizeExceededException} object.
+     * @return a {@link ResponseEntity} object.
+     */
+    @ExceptionHandler(MaxUploadSizeExceededException.class)
+    public ResponseEntity&lt;ErrorsDTO&gt; handleMaxSizeException(MaxUploadSizeExceededException exc) {
+<span class="nc" id="L208">        String[] listErrors = { exc.getMessage() };</span>
+
+<span class="nc" id="L210">        LOGGER.error(exc.getLocalizedMessage());</span>
+<span class="nc" id="L211">        String errorCode = Integer.toString(HttpStatus.PAYLOAD_TOO_LARGE.value());</span>
+<span class="nc" id="L212">        return error(exc, HttpStatus.PAYLOAD_TOO_LARGE, errorCode, ErrorDTO.LevelEnum.FATAL,</span>
+<span class="nc" id="L213">                HttpStatus.PAYLOAD_TOO_LARGE.getReasonPhrase(), listErrors);</span>
+    }
+
+    /**
+     * Generate object response error with info like code, message, level and
+     * description data.
+     *
+     * @param exception   a {@link Exception} object.
+     * @param httpStatus  a {@link HttpStatus} object
+     * @param code        a {@link String} object
+     * @param level       a {@link String} object
+     * @param description a {@link String} object
+     * @param args        a {@link Object[]} object
+     * @return a {@link ResponseEntity} object.
+     */
+    private ResponseEntity&lt;ErrorsDTO&gt; error(final Exception exception, final HttpStatus httpStatus, final String code,
+                                            final ErrorDTO.LevelEnum level, final String description, Object[] args) {
+<span class="nc" id="L230">        List&lt;ErrorDTO&gt; errors = new ArrayList&lt;&gt;();</span>
+<span class="nc" id="L231">        Arrays.stream(args).forEach(x -&gt; errors.add(new ErrorDTO().code(code).description(description).level(level)</span>
+<span class="nc" id="L232">                .message(exception.getLocalizedMessage())));</span>
+<span class="nc bnc" id="L233" title="All 2 branches missed.">        LOGGER.error(exception == null ? &quot;Exception null&quot; : exception.getLocalizedMessage());</span>
+<span class="nc" id="L234">        return new ResponseEntity&lt;&gt;(new ErrorsDTO().errors(errors), httpStatus);</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

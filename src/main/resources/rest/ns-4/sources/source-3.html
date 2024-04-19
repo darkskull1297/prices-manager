@@ -1,0 +1,102 @@
+
+
+
+<!DOCTYPE html>
+<html id="htmlId">
+<head>
+  <title>Coverage Report > GenericMapper</title>
+  <style type="text/css">
+    @import "../../css/coverage.css";
+    @import "../../css/highlight-idea.css";
+  </style>
+  <script type="text/javascript" src="../../js/highlight.pack.js"></script>
+</head>
+
+<body>
+<div class="content">
+<div class="breadCrumbs">
+Current scope:     <a href="../../index.html">all classes</a>
+    <span class="separator">|</span>
+    <a href="../index.html">com.zara.spring.java.domain.mappers</a>
+</div>
+
+<h1>Coverage Summary for Class: GenericMapper (com.zara.spring.java.domain.mappers)</h1>
+
+<table class="coverageStats">
+<tr>
+  <th class="name">Class</th>
+</tr>
+<tr>
+  <td class="name">GenericMapper</td>
+</tr>
+
+</table>
+
+<br/>
+<br/>
+
+
+<pre>
+<div class="sourceCode" id="sourceCode"><i class="no-highlight">1</i>&nbsp;package com.zara.spring.java.domain.mappers;
+<i class="no-highlight">2</i>&nbsp;
+<i class="no-highlight">3</i>&nbsp;import java.util.List;
+<i class="no-highlight">4</i>&nbsp;
+<i class="no-highlight">5</i>&nbsp;public interface GenericMapper&lt;S, T&gt; {
+<i class="no-highlight">6</i>&nbsp;    /**
+<i class="no-highlight">7</i>&nbsp;     *Convert to Domain Model
+<i class="no-highlight">8</i>&nbsp;     * @param s it is an Domain Model
+<i class="no-highlight">9</i>&nbsp;     * @return an Domain Model
+<i class="no-highlight">10</i>&nbsp;     */
+<i class="no-highlight">11</i>&nbsp;    T toDTO(S s);
+<i class="no-highlight">12</i>&nbsp;
+<i class="no-highlight">13</i>&nbsp;    /**
+<i class="no-highlight">14</i>&nbsp;     *Convert to Entity
+<i class="no-highlight">15</i>&nbsp;     * @param t it is an Entity
+<i class="no-highlight">16</i>&nbsp;     * @return an Entity
+<i class="no-highlight">17</i>&nbsp;     */
+<i class="no-highlight">18</i>&nbsp;    S toEntity(T t);
+<i class="no-highlight">19</i>&nbsp;
+<i class="no-highlight">20</i>&nbsp;    /**
+<i class="no-highlight">21</i>&nbsp;     *Convert to a List of Entities
+<i class="no-highlight">22</i>&nbsp;     * @param tList is a List of Entities
+<i class="no-highlight">23</i>&nbsp;     * @return a List of Entities
+<i class="no-highlight">24</i>&nbsp;     */
+<i class="no-highlight">25</i>&nbsp;    List&lt;S&gt; toEntities(List&lt;T&gt; tList);
+<i class="no-highlight">26</i>&nbsp;
+<i class="no-highlight">27</i>&nbsp;    /**
+<i class="no-highlight">28</i>&nbsp;     *Convert to a List of Domain Model
+<i class="no-highlight">29</i>&nbsp;     * @param sList a List of Domain Model
+<i class="no-highlight">30</i>&nbsp;     * @return a List of Domain Model
+<i class="no-highlight">31</i>&nbsp;     */
+<i class="no-highlight">32</i>&nbsp;    List&lt;T&gt; toDTOList(List&lt;S&gt; sList);
+<i class="no-highlight">33</i>&nbsp;}
+</div>
+</pre>
+</div>
+
+<script type="text/javascript">
+(function() {
+    var msie = false, msie9 = false;
+    /*@cc_on
+      msie = true;
+      @if (@_jscript_version >= 9)
+        msie9 = true;
+      @end
+    @*/
+
+    if (!msie || msie && msie9) {
+        var codeBlock = document.getElementById('sourceCode');
+
+        if (codeBlock) {
+            hljs.highlightBlock(codeBlock);
+        }
+    }
+})();
+</script>
+
+<div class="footer">
+    
+    <div style="float:right;">generated on 2024-04-19 19:23</div>
+</div>
+</body>
+</html>
