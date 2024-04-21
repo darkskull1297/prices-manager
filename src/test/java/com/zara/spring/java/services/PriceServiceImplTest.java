@@ -23,7 +23,7 @@ class PriceServiceImplTest {
 
     @Test
     void getPriceByParametersResultListId1() {
-        ZoneId zoneId = ZoneId.of("UTC");
+        ZoneId zoneId = ZoneId.of("GMT");
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
         LocalDateTime dateTime = LocalDateTime.parse("2020-06-14T10:00:00Z", formatter);
         ZoneOffset offset = zoneId.getRules().getOffset(dateTime);
@@ -31,8 +31,8 @@ class PriceServiceImplTest {
         PriceModel priceByParameteres = this.priceService.getPriceByParameters(offsetDateTime, 35455, 1);
         assertEquals(1, priceByParameteres.getPriceListId());
         assertEquals(1, priceByParameteres.getBrandId());
-        assertEquals("2020-06-14T02:00+02:00", priceByParameteres.getStartDate().toString());
-        assertEquals("2021-01-01T00:59:59+01:00", priceByParameteres.getEndDate().toString());
+        assertEquals("2020-06-14T00:00Z", priceByParameteres.getStartDate().atZoneSameInstant(zoneId).toOffsetDateTime().toString());
+        assertEquals("2020-12-31T23:59:59Z", priceByParameteres.getEndDate().atZoneSameInstant(zoneId).toOffsetDateTime().toString());
         assertEquals(35455, priceByParameteres.getProductId());
         assertEquals(0, priceByParameteres.getPriority());
         assertEquals(35.40, priceByParameteres.getPrice());
@@ -48,8 +48,8 @@ class PriceServiceImplTest {
         PriceModel priceByParameteres = this.priceService.getPriceByParameters(offsetDateTime, 35455, 1);
         assertEquals(2, priceByParameteres.getPriceListId());
         assertEquals(1, priceByParameteres.getBrandId());
-        assertEquals("2020-06-14T17:00+02:00", priceByParameteres.getStartDate().toString());
-        assertEquals("2020-06-14T20:30:59+02:00", priceByParameteres.getEndDate().toString());
+        assertEquals("2020-06-14T15:00Z", priceByParameteres.getStartDate().atZoneSameInstant(zoneId).toOffsetDateTime().toString());
+        assertEquals("2020-06-14T18:30:59Z", priceByParameteres.getEndDate().atZoneSameInstant(zoneId).toOffsetDateTime().toString());
         assertEquals(35455, priceByParameteres.getProductId());
         assertEquals(1, priceByParameteres.getPriority());
         assertEquals(25.45, priceByParameteres.getPrice());
@@ -65,8 +65,8 @@ class PriceServiceImplTest {
         PriceModel priceByParameteres = this.priceService.getPriceByParameters(offsetDateTime, 35455, 1);
         assertEquals(1, priceByParameteres.getPriceListId());
         assertEquals(1, priceByParameteres.getBrandId());
-        assertEquals("2020-06-14T02:00+02:00", priceByParameteres.getStartDate().toString());
-        assertEquals("2021-01-01T00:59:59+01:00", priceByParameteres.getEndDate().toString());
+        assertEquals("2020-06-14T00:00Z", priceByParameteres.getStartDate().atZoneSameInstant(zoneId).toOffsetDateTime().toString());
+        assertEquals("2020-12-31T23:59:59Z", priceByParameteres.getEndDate().atZoneSameInstant(zoneId).toOffsetDateTime().toString());
         assertEquals(35455, priceByParameteres.getProductId());
         assertEquals(0, priceByParameteres.getPriority());
         assertEquals(35.40, priceByParameteres.getPrice());
@@ -82,8 +82,8 @@ class PriceServiceImplTest {
         PriceModel priceByParameteres = this.priceService.getPriceByParameters(offsetDateTime, 35455, 1);
         assertEquals(3, priceByParameteres.getPriceListId());
         assertEquals(1, priceByParameteres.getBrandId());
-        assertEquals("2020-06-15T02:00+02:00", priceByParameteres.getStartDate().toString());
-        assertEquals("2020-06-15T13:00+02:00", priceByParameteres.getEndDate().toString());
+        assertEquals("2020-06-15T00:00Z", priceByParameteres.getStartDate().atZoneSameInstant(zoneId).toOffsetDateTime().toString());
+        assertEquals("2020-06-15T11:00Z", priceByParameteres.getEndDate().atZoneSameInstant(zoneId).toOffsetDateTime().toString());
         assertEquals(35455, priceByParameteres.getProductId());
         assertEquals(1, priceByParameteres.getPriority());
         assertEquals(30.50, priceByParameteres.getPrice());
@@ -99,8 +99,8 @@ class PriceServiceImplTest {
         PriceModel priceByParameteres = this.priceService.getPriceByParameters(offsetDateTime, 35455, 1);
         assertEquals(4, priceByParameteres.getPriceListId());
         assertEquals(1, priceByParameteres.getBrandId());
-        assertEquals("2020-06-15T18:00+02:00", priceByParameteres.getStartDate().toString());
-        assertEquals("2021-01-01T00:59:59+01:00", priceByParameteres.getEndDate().toString());
+        assertEquals("2020-06-15T16:00Z", priceByParameteres.getStartDate().atZoneSameInstant(zoneId).toOffsetDateTime().toString());
+        assertEquals("2020-12-31T23:59:59Z", priceByParameteres.getEndDate().atZoneSameInstant(zoneId).toOffsetDateTime().toString());
         assertEquals(35455, priceByParameteres.getProductId());
         assertEquals(1, priceByParameteres.getPriority());
         assertEquals(38.95, priceByParameteres.getPrice());

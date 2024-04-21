@@ -1,3 +1,5 @@
-C:\Projects\prices-manager\src\test\java\com\zara\spring\java\GetPriceByDateTest.java
+C:\Projects\prices-manager\src\test\java\com\zara\spring\java\cucumber\CucumberGetPriceByDateTest.java
+C:\Projects\prices-manager\src\test\java\com\zara\spring\java\cucumber\steps\GetPriceByDateTestSteps.java
+C:\Projects\prices-manager\src\test\java\com\zara\spring\java\cucumber\config\CucumberIntegrationConfig.java
 C:\Projects\prices-manager\src\test\java\com\zara\spring\java\services\PriceServiceImplTest.java
-C:\Projects\prices-manager\src\test\java\com\zara\spring\java\CucumberGetPriceByDateTest.java
+C:\Projects\prices-manager\src\test\java\com\zara\spring\java\cucumber\config\CommonCucumberIntegrationConfig.java

@@ -15,7 +15,7 @@ import jakarta.validation.constraints.*;
  */
 @Schema(description = "Data structure containing the status components.")
 @Validated
-@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-04-19T19:47:32.501025700+02:00[Europe/Madrid]")
+@jakarta.annotation.Generated(value = "io.swagger.codegen.v3.generators.java.SpringCodegen", date = "2024-04-21T18:34:16.493420700+02:00[Europe/Madrid]")
 
 
 public class ComponentDTO  implements Serializable  {

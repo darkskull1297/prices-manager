@@ -17,10 +17,6 @@
 		<java.version>17</java.version>
 		<cucumber.version>7.11.1</cucumber.version>
 		<jacoco.version>0.8.8</jacoco.version>
-		<code.coverage.project.folder>${basedir}/../</code.coverage.project.folder>
-		<code.coverage.overall.data.folder>${basedir}/../target</code.coverage.overall.data.folder>
-		<generated-sources-path>target/generated-sources/swagger/</generated-sources-path>
-		<generated-sources-java-path>src/main/java/</generated-sources-java-path>
 	</properties>
 
 	<dependencies>
@@ -46,6 +42,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
+			<exclusions>
+				<exclusion>
+					<groupId>com.vaadin.external.google</groupId>
+					<artifactId>android-json</artifactId>
+				</exclusion>
+			</exclusions>
 		</dependency>
 		<dependency>
 			<groupId>org.springdoc</groupId>
@@ -256,7 +258,7 @@
 									<element>BUNDLE</element>
 									<limits>
 										<limit>
-											<counter>LINE</counter>
+											<counter>INSTRUCTION</counter>
 											<value>COVEREDRATIO</value>
 											<minimum>10%</minimum>
 										</limit>

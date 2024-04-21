@@ -1,4 +1,4 @@
-package com.zara.spring.java;
+package com.zara.spring.java.cucumber;
 
 import org.junit.platform.suite.api.*;
 

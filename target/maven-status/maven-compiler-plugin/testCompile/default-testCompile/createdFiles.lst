@@ -1,3 +1,5 @@
-com\zara\spring\java\GetPriceByDateTest.class
-com\zara\spring\java\CucumberGetPriceByDateTest.class
+com\zara\spring\java\cucumber\config\CucumberIntegrationConfig.class
 com\zara\spring\java\services\PriceServiceImplTest.class
+com\zara\spring\java\cucumber\config\CommonCucumberIntegrationConfig.class
+com\zara\spring\java\cucumber\CucumberGetPriceByDateTest.class
+com\zara\spring\java\cucumber\steps\GetPriceByDateTestSteps.class
